@@ -31,7 +31,7 @@ long end_time;
 int main(int argc, char* argv[]) {
     SYMBOLS_SIZE = sizeof(SYMBOLS);
 
-    strcpy(password, "passed");
+    strcpy(password, argv[1]);
 
     start_time = omp_get_wtime();
 

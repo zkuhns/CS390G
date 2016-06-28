@@ -21,28 +21,20 @@ void populate_dictionary(std::vector < std::string >* dictionary, std::string fi
 }
 
 int minimum(int value1, int value2, int value3) {
-    int min = value1;
-    if (min > value2) {
-        min = value2;
-    }
-    if (min > value3) {
-        min = value3;
-    }
-    return min;
-    //return std::min(std::min(value1, value2), value3);
+    return std::min(std::min(value1, value2), value3);
 }
 
 int levenshtein(std::string string_one, std::string string_two) {
     std::vector< std::vector<int> > matrix (string_one.size()+1, std::vector<int> (string_two.size()+1, 0));
 
-    for (int i = 1; i <= string_one.size(); i++)
+    for (unsigned int i = 1; i <= string_one.size(); i++)
         matrix[i][0] = i;
-    for (int i = 1; i <= string_two.size(); i++)
+    for (unsigned int i = 1; i <= string_two.size(); i++)
         matrix[0][i] = i;
 
     int cost;
-    for (int j = 1; j <= string_two.size(); j++) {
-        for (int i = 1; i <= string_one.size(); i++) {
+    for (unsigned int j = 1; j <= string_two.size(); j++) {
+        for (unsigned int i = 1; i <= string_one.size(); i++) {
             if (string_one[i-1] == string_two[j-1]) {
                 cost = 0;
             } else {
@@ -57,8 +49,8 @@ int levenshtein(std::string string_one, std::string string_two) {
     return matrix[string_one.size()][string_two.size()];
 }
 
-int main() {
-    std::string word = "testington";
+int main(int argc, char *argv[]) {
+    std::string word = argv[1];
     std::string closest_word;
     int smallest_distance = 100;
 
